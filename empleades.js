@@ -42,7 +42,7 @@ console.log(empleadesPorPais("Colombia"));
 
 
 
-// 3- sueldoPromedioEmpleades, que devuelva el sueldo promedio de todos los empleades
+// 6 - sueldoPromedioEmpleades, que devuelva el sueldo promedio de todos los empleades
 // Creamos un array más corto para ir probando nuestra función, y una vez resuelto probamos con el array original (empleades)
 const test = [
   {
@@ -95,3 +95,62 @@ const sueldoPromedioEmpleades = () => {
 
   return sueldoPromedio / empleade.length;
 };
+
+
+
+// 10 - `subirDeCategoria`, que tome como parámetro un objeto empleade. Si diche empleade no tiene un seniority "Senior", cambiar el valor de su propiedad seniority con el siguiente que le corresponde en orden ("Trainee" -> "Junior" -> "Semisenior" -> "Senior"), y le incremente en 10000 el sueldo
+
+// empleade es un objeto
+const subirDeCategoriaSwitch = (empleade) => {
+
+  if(empleade.seniority != "Senior"){
+    switch(empleade.seniority){
+      case "Trainee":
+        empleade.seniority = "Junior";
+      break;
+      case "Junior":
+        empleade.seniority = "Semisenior";
+      break;
+      case "Semisenior":
+        empleade.seniority = "Senior";
+      break;
+      default:
+        empleade.seniority;
+        console.log("Mensaje de error")
+    }
+
+    empleade.sueldo = empleade.sueldo + 10000;
+  }
+
+  return empleade
+}
+
+
+// Version de Pau
+const subirDeCategoria = (empleade) => {
+  const seniorities = ['Trainee','Junior', 'Semisenior', 'Senior'];
+  
+  if(empleade.seniority === 'Senior') 
+  return;
+
+  let seniorPosition = seniorities.indexOf(empleade.seniority);
+
+  empleade.sueldo = empleade.sueldo + 10000;
+  empleade.seniority = seniorities[seniorPosition +1];
+
+  return empleade.seniority
+}
+
+console.log("subir de categoria: ", subirDeCategoria(empleades[1]));  
+console.log(empleades[1]);
+
+
+
+
+// const primerEmpleade = empleades[1]
+
+// console.log("antes " + primerEmpleade.seniority);
+
+// subirDeCategoria(primerEmpleade)
+
+// console.log("despues " + primerEmpleade.seniority);
