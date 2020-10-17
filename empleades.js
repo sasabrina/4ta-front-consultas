@@ -1,6 +1,6 @@
 // Hacer ejercicios de empleades acá
 
-console.log(empleades); // la variable empleades viene del script data-empleades.js, vamos a poder acceder a ella siempre y cuando en nuestro HTML lo linkeemos antes del script en el que necesitemos usarla.
+// console.log(empleades); // la variable empleades viene del script data-empleades.js, vamos a poder acceder a ella siempre y cuando en nuestro HTML lo linkeemos antes del script en el que necesitemos usarla.
 
 // 1- empleadesQueHacenGuardia, que devuelva un array con todes les empleades que hacen guardia
 
@@ -35,9 +35,9 @@ const empleadesPorPais = (pais) => {
   return empleadesPorPais;
 };
 
-console.log(empleadesPorPais("Uruguay"));
-console.log(empleadesPorPais("Venezuela"));
-console.log(empleadesPorPais("Colombia"));
+// console.log(empleadesPorPais("Uruguay"));
+// console.log(empleadesPorPais("Venezuela"));
+// console.log(empleadesPorPais("Colombia"));
 
 
 
@@ -141,8 +141,8 @@ const subirDeCategoria = (empleade) => {
   return empleade.seniority
 }
 
-console.log("subir de categoria: ", subirDeCategoria(empleades[1]));  
-console.log(empleades[1]);
+// console.log("subir de categoria: ", subirDeCategoria(empleades[1]));  
+// console.log(empleades[1]);
 
 
 
@@ -154,3 +154,52 @@ console.log(empleades[1]);
 // subirDeCategoria(primerEmpleade)
 
 // console.log("despues " + primerEmpleade.seniority);
+
+
+
+// 21 -`obtenerInfoPagos`, que devuelva una array donde cada elemento es un objeto con las propiedades
+    // - nombre
+    // - sueldoBruto
+    // - obraSocial
+    // - jubilacion
+    // - sueldoNeto
+    // habiendo un elemento por cada empleade, donde
+    // - sueldoBruto es el sueldo del objeto original
+    // - obraSocial es el 3% del sueldoBruto
+    // - jubilacion es el 11% del sueldoBruto
+    // - sueldoNeto es el resultado de restarle a sueldoBruto los valores de obraSocial y jubilacion
+
+const obtenerInfoPagosConVariables = () =>{
+  const infoPagos = empleades.map((empleade) =>{
+    const obraSocial = empleade.sueldo * 0.03;
+    const jubilacion = empleade.sueldo * 0.11;
+    const sueldoNeto = empleade.sueldo - obraSocial - jubilacion;
+
+    return {
+      nombre: empleade.nombre,
+      sueldoBruto: empleade.sueldo,
+      obraSocial,
+      jubilacion,
+      sueldoNeto
+    };
+
+  });
+
+  return infoPagos;
+}
+
+const obtenerInfoPagosConReturn = () =>{
+  return empleades.map((empleade) =>{
+    const obraSocial = empleade.sueldo * 0.03;
+    const jubilacion = empleade.sueldo * 0.11;
+    const sueldoNeto = empleade.sueldo - obraSocial - jubilacion;
+
+    return {
+      nombre: empleade.nombre,
+      sueldoBruto: empleade.sueldo,
+      obraSocial,
+      jubilacion,
+      sueldoNeto
+    };
+  });
+}
