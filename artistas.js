@@ -83,3 +83,67 @@ const artistasSolistasConReturn = (artistas) => {
  }
  
 const artistasSolistasConReturnImplicito = (artistas) => artistas.filter(artista => artista.solista)
+
+// 4 - cantidadDeArtistasPorGenero, que tome por parámetro un array de artistas y devuelva un objeto donde cada "género" es una propiedad y su valor la cantidad de artistas de dicho género
+
+/*
+1- preguntar si existe ese genero
+A- Si existe le sumo uno
+B- Si no exite lo creo con valor en 1
+ const genero = [punk, rock, rock, punk, pop];
+ genero[1]
+*/
+
+const cantidadDeArtistasPorGenero = (artistas) =>{
+    /*
+        vuelta 1 => {} , punk
+        vuelta 2 => {punk: 1} , rock
+        vuelta 3 => {punk: 1,rock: 1} ,rock
+        vuelta 4 => {punk: 1,rock: 2} ,punk
+        vuelta 5 => {punk: 2,rock: 2} ,pop
+        vuelta 6 => {punk: 2,rock: 2,pop: 1}
+    */
+
+    return artistas.reduce((acc,artista)=>{
+        console.log("antes",{...acc},artista.genero);
+
+        if(acc[artista.genero]){
+            acc[artista.genero]++;
+        }else{
+            acc[artista.genero]=1;
+        }
+
+        console.log("despues",{...acc},artista.genero);
+        return acc;
+    }, {})
+
+}
+
+/*
+    El método reduce() puede recibir uno o dos parámetros: una función, o una función y un valor inicial (acc)
+    const numeros = [15,28,3,4]
+
+    // un parámetro
+    numeros.reduce((acc, numero) => {}) 
+
+    // dos parámetros
+    numeros.reduce((acc, numero) => {}, 0) 
+
+    // Sin acumulador / valor inicial
+    // vuelta 1 => 15 28 = 43
+    // vuelta 2 => 43 3  = 46
+    // vuelta 3 => 46 4  = 50
+
+    numeros.reduce((acc,artista)=>{
+        return acc+artista
+    })
+
+
+    // Con acumulador / valor inicial
+    // vuelta 1 => 30 15 = 30
+    // vuelta 2 => 30 28 = 46
+
+    numeros.reduce((acc,artista)=>{
+        return acc+artista
+    }, 30)
+*/
