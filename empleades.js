@@ -9,12 +9,15 @@
 //(visto en la clase 61)
 
 // Ejemplo con filter
-function empleadesQueHacenGuardiaFilter() {
+function empleadesQueHacenGuardiaFilter(array) {
   // declaro una variable cuyo valor será el array que nos devuelva filter
-  const hacenGuardia = empleades.filter((empleade) => empleade.haceGuardia); // filtramos el array original, quedandonos solamente con los objetos que cumplan la condición de tener la propiedad "haceGuardia" en true
+  const hacenGuardia = array.filter((empleade) => empleade.haceGuardia); // filtramos el array original, quedandonos solamente con los objetos que cumplan la condición de tener la propiedad "haceGuardia" en true
 
   return hacenGuardia; // y retornamos/devolvemos el array filtrado
 }
+// empleadesQueHacenGuardiaFilter(empleades)
+
+
 
 // Ejemplo con forEach
 function empleadesQueHacenGuardiaForeach() {
@@ -90,6 +93,17 @@ const empleadesConSueldoMayorA_D = (numero) => {
 
 // ejemplo E
 const empleadesConSueldoMayorA_E = (numero) => empleades.filter((empleade) => empleade.sueldo > numero).sort((a, b) => a.sueldo - b.sueldo)
+
+
+// ejemplo F
+const empleadesConSueldoMayorA_F = (numero) => {
+  const mayorSueldo = (empleade) =>{
+    return empleade.sueldo > numero
+  }
+  const conMayorSueldo = empleades.filter(mayorSueldo).sort()
+
+  return conMayorSueldo
+}
 
 // console.log(empleadesConSueldoMayorA_A(53372));
 // console.log(empleadesConSueldoMayorA_B(53372));
@@ -278,7 +292,7 @@ const subirDeCategoria = (empleade) => {
 
 // gregarTecnologias, que agregue a todos los objetos empleades la propiedad tecnologías,que es un array conteniendo los valores "GIT" y "Node.js"
 
-const gregarTecnologias = () => {
+const agregarTecnologias = () => {
   const tecnologias = ["GIT", "Node.js"]
 
   const conNuevasTecnologias = empleades.map((empleade) => {
@@ -289,7 +303,7 @@ const gregarTecnologias = () => {
   return conNuevasTecnologias
 }
 
-// console.table(gregarTecnologias())
+// console.table(agregarTecnologias())
 
 
 /***************** EJERCICIO 12 *****************/
@@ -331,7 +345,7 @@ const empleadesQueSabenLenguajes = (lenguajesRequeridos) => {
   return sabenLenguajes
 }
 
-console.table(empleadesQueSabenLenguajes(['JavaScript', 'C#', 'Python', 'Java', 'Ruby', 'PHP']))
+// console.table(empleadesQueSabenLenguajes(['JavaScript', 'C#', 'Python', 'Java', 'Ruby', 'PHP']))
 
 
 
