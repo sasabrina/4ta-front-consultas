@@ -2,19 +2,23 @@
 
 // console.log(empleades); // la variable empleades viene del script data-empleades.js, vamos a poder acceder a ella siempre y cuando en nuestro HTML lo linkeemos antes del script en el que necesitemos usarla.
 
-// 1- empleadesQueHacenGuardia, que devuelva un array con todes les empleades que hacen guardia
+
+/***************** EJERCICIO 1 *****************/
+
+// empleadesQueHacenGuardia, que devuelva un array con todes les empleades que hacen guardia 
+//(visto en la clase 61)
 
 // Ejemplo con filter
 function empleadesQueHacenGuardiaFilter() {
   // declaro una variable cuyo valor será el array que nos devuelva filter
-  let hacenGuardia = empleades.filter((empleade) => empleade.haceGuardia); // filtramos el array original, quedandonos solamente con los objetos que cumplan la condición de tener la propiedad "haceGuardia" en true
+  const hacenGuardia = empleades.filter((empleade) => empleade.haceGuardia); // filtramos el array original, quedandonos solamente con los objetos que cumplan la condición de tener la propiedad "haceGuardia" en true
 
   return hacenGuardia; // y retornamos/devolvemos el array filtrado
 }
 
 // Ejemplo con forEach
 function empleadesQueHacenGuardiaForeach() {
-  let hacenGuardia = [];
+  const hacenGuardia = [];
 
   empleades.forEach((empleade) => {
     if (empleade.haceGuardia) {
@@ -26,11 +30,12 @@ function empleadesQueHacenGuardiaForeach() {
 }
 
 
+/***************** EJERCICIO 2 *****************/
 
-// 2 - empleadesPorPais, que tome por parámetro el nombre de un país y devuelva un array con todes les empleades que son de dicho país
+// empleadesPorPais, que tome por parámetro el nombre de un país y devuelva un array con todes les empleades que son de dicho país
 
 const empleadesPorPais = (pais) => {
-  let empleadesPorPais = empleades.filter((empleade) => empleade.pais === pais);
+  const empleadesPorPais = empleades.filter((empleade) => empleade.pais === pais);
 
   return empleadesPorPais;
 };
@@ -40,10 +45,75 @@ const empleadesPorPais = (pais) => {
 // console.log(empleadesPorPais("Colombia"));
 
 
+/***************** EJERCICIO 3 *****************/
+
+// empleadesPorArea, que tome por parámetro el nombre de un área y devuelva un array con todes les empleades que son de dicho área
+
+const empleadesPorArea = (area) => {
+  const porArea = empleades.filter((empleade) => empleade.area === area)
+
+  return porArea
+}
+// console.log(empleadesPorPais('QA'));
 
 
-// 6 - sueldoPromedioEmpleades, que devuelva el sueldo promedio de todos los empleades
+/***************** EJERCICIO 4 *****************/
+
+// empleadesConSueldoMayorA, que tome por parámetro un número como sueldo y devuelva un array con todes les empleades que tengan un sueldo mayor a dicho número, ordenados de menor a mayor según sueldo
+
+// ejemplo A
+const empleadesConSueldoMayorA_A = (numero) => {
+  const conMayorSueldo = empleades.filter((empleade) => empleade.sueldo > numero)
+  conMayorSueldo.sort((a, b) => a.sueldo - b.sueldo)
+
+  return conMayorSueldo
+}
+
+// ejemplo B
+const empleadesConSueldoMayorA_B = (numero) => {
+  const conMayorSueldo = empleades.filter((empleade) => empleade.sueldo > numero).sort((a, b) => a.sueldo - b.sueldo)
+
+  return conMayorSueldo
+}
+
+// ejemplo C
+const empleadesConSueldoMayorA_C = (numero) => {
+  const conMayorSueldo = empleades.filter((empleade) => empleade.sueldo > numero)
+
+  return conMayorSueldo.sort((a, b) => a.sueldo - b.sueldo)
+}
+
+// ejemplo D
+const empleadesConSueldoMayorA_D = (numero) => {
+  return empleades.filter((empleade) => empleade.sueldo > numero).sort((a, b) => a.sueldo - b.sueldo)
+}
+
+// ejemplo E
+const empleadesConSueldoMayorA_E = (numero) => empleades.filter((empleade) => empleade.sueldo > numero).sort((a, b) => a.sueldo - b.sueldo)
+
+// console.log(empleadesConSueldoMayorA_A(53372));
+// console.log(empleadesConSueldoMayorA_B(53372));
+// console.log(empleadesConSueldoMayorA_C(53372));
+// console.log(empleadesConSueldoMayorA_D(53372));
+// console.log(empleadesConSueldoMayorA_E(53372));
+
+
+/***************** EJERCICIO 5 *****************/
+
+// empleadesConMasLenguajes, que tome por parámetro un número y devuelva un array con aquelles empleades que sepan más lenguajes que dicho número
+
+const empleadesConMasLenguajes = (numero) => {
+  const conMasLenguajes = empleades.filter((empleade) => empleade.lenguajes.length > numero)
+
+  return conMasLenguajes
+}
+// console.table(empleadesConMasLenguajes(5));
+
+/***************** EJERCICIO 6 *****************/
+
+// sueldoPromedioEmpleades, que devuelva el sueldo promedio de todos los empleades
 // Creamos un array más corto para ir probando nuestra función, y una vez resuelto probamos con el array original (empleades)
+// (visto en la clase 62)
 const test = [
   {
     nombre: "Wade Morgan",
@@ -86,19 +156,69 @@ const test = [
 // 2        160000 -  'Pepita Morgan'   2
 // 3        180000
 
-const sueldoPromedioEmpleades = () => {
+const sueldoPromedioEmpleades = (empleades) => { // se agrega parámetro para poder reutilizar en el siquiente ejercicio
   const sueldoPromedio = empleades.reduce((acc, empleade, index) => {
     console.log({ acc, empleade, index }); // esto nos va a mostrar el valor de los parametros en cada vuelta.
 
     return acc + empleade.sueldo;
   }, 0);
 
-  return sueldoPromedio / empleade.length;
+  return sueldoPromedio / empleades.length;
 };
+// console.log(sueldoPromedioEmpleades()); // antes del ejercicio 7
+// console.log(sueldoPromedioEmpleades(empleades)); // después del ejercicio 7
 
 
+/***************** EJERCICIO 7 *****************/
+
+// sueldoPromedioPorSeniority, que tome por parámetro un seniority, y devuelva el sueldo promedio de todes les empleades que tengan ese seniority
+
+const sueldoPromedioPorSeniority = (seniority) => {
+  const porSeniority = empleades.filter((empleade) => empleade.seniority === seniority)
+
+  // La función del ejercicio 6 nos devuelve el sueldo promedio de un array de empleades, así que podríamos hacerla más dinámica agregandole un parámetro y, de esa manera, poder reutilizarla dentro de este
+
+  const sueldoPromedio = sueldoPromedioEmpleades(porSeniority)
+  return sueldoPromedio
+}
+
+// console.log(sueldoPromedioPorSeniority("Semisenior"));
+
+
+
+/***************** EJERCICIO 8 *****************/
+
+// buscarEmpleades, que tome por parámetros area, puesto y seniority, y devuelva un array con les empleades que pertenezcan a dicha area, puesto y seniority
+
+const buscarEmpleades = (area, puesto, seniority) => {
+  const resultadoBusqueda = empleades.filter((empleade) => empleade.area === area && empleade.puesto === puesto && empleade.seniority === seniority)
+
+  return resultadoBusqueda
+}
+// console.table(buscarEmpleades("Seguridad", "Backend Developer", "Senior"));
+
+
+
+/***************** EJERCICIO 9 *****************/
+
+// errorEnProduccion, que ponga en true la propiedad haceGuardia de todos los empleados
+
+const errorEnProduccion = () => {
+  const todosHacenGuardia = empleades.map((empleade) => {
+    empleade.haceGuardia = true
+    return empleade
+  })
+
+  return todosHacenGuardia
+}
+
+// console.table(errorEnProduccion());
+
+
+/***************** EJERCICIO 10 *****************/
 
 // 10 - `subirDeCategoria`, que tome como parámetro un objeto empleade. Si diche empleade no tiene un seniority "Senior", cambiar el valor de su propiedad seniority con el siguiente que le corresponde en orden ("Trainee" -> "Junior" -> "Semisenior" -> "Senior"), y le incremente en 10000 el sueldo
+// (visto en la clase 63)
 
 // empleade es un objeto
 const subirDeCategoriaSwitch = (empleade) => {
@@ -145,8 +265,6 @@ const subirDeCategoria = (empleade) => {
 // console.log(empleades[1]);
 
 
-
-
 // const primerEmpleade = empleades[1]
 
 // console.log("antes " + primerEmpleade.seniority);
@@ -154,6 +272,66 @@ const subirDeCategoria = (empleade) => {
 // subirDeCategoria(primerEmpleade)
 
 // console.log("despues " + primerEmpleade.seniority);
+
+
+/***************** EJERCICIO 11 *****************/
+
+// gregarTecnologias, que agregue a todos los objetos empleades la propiedad tecnologías,que es un array conteniendo los valores "GIT" y "Node.js"
+
+const gregarTecnologias = () => {
+  const tecnologias = ["GIT", "Node.js"]
+
+  const conNuevasTecnologias = empleades.map((empleade) => {
+    empleade.tecnologias = tecnologias
+    return empleade
+  })
+
+  return conNuevasTecnologias
+}
+
+// console.table(gregarTecnologias())
+
+
+/***************** EJERCICIO 12 *****************/
+
+// empleadeSabeLenguaje, que tome por parámetro un objeto empleade (elemento del array empleades) y un lenguaje y devuelva true si dicho empleade sabe dicho lenguaje
+
+const empleadeSabeLenguaje = (empleade, lenguaje) => {
+  const sabeLenguaje = empleade.lenguajes.includes(lenguaje)
+
+  return sabeLenguaje
+}
+
+// console.log(empleadeSabeLenguaje(empleades[0], "Java")); // true
+// console.log(empleadeSabeLenguaje(empleades[0], "Javascript")); // false
+
+
+/***************** EJERCICIO 13 *****************/
+
+// empleadesQueSabenLenguaje, que tome por parámetro un lenguaje y devuelva todes les empleades que saben dicho lenguaje (usar la función anterior)
+
+const empleadesQueSabenLenguaje = (lenguaje) => {
+  const sabenLenguaje = empleades.filter((empleade) => empleadeSabeLenguaje(empleade, lenguaje))
+
+  return sabenLenguaje
+}
+// console.table(empleadesQueSabenLenguaje("JavaScript"))
+
+
+/***************** EJERCICIO 14 *****************/
+
+// empleadesQueSabenLenguajes, que tome por parámetro un array de lenguajes y devuelva un array con aquelles empleades que sepan todos esos lenguajes
+
+const empleadesQueSabenLenguajes = (lenguajesRequeridos) => {
+  const sabenLenguajes = empleades.filter((empleade) => {
+    return lenguajesRequeridos.every((lenguaje) => {
+      return empleade.lenguajes.includes(lenguaje)
+    })
+  })
+  return sabenLenguajes
+}
+
+console.table(empleadesQueSabenLenguajes(['JavaScript', 'C#', 'Python', 'Java', 'Ruby', 'PHP']))
 
 
 
@@ -168,6 +346,8 @@ const subirDeCategoria = (empleade) => {
     // - obraSocial es el 3% del sueldoBruto
     // - jubilacion es el 11% del sueldoBruto
     // - sueldoNeto es el resultado de restarle a sueldoBruto los valores de obraSocial y jubilacion
+
+// (visto en la clase 63)
 
 const obtenerInfoPagosConVariables = () =>{
   const infoPagos = empleades.map((empleade) =>{
