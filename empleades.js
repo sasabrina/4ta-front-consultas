@@ -483,7 +483,7 @@ const obtenerInfoSeniority = () => {
 // console.table(obtenerInfoSeniority())
 
 
-/***************** EJERCICIO 20 *****************/
+/***************** EJERCICIO 21 *****************/
 
 
 // 21 -`obtenerInfoPagos`, que devuelva una array donde cada elemento es un objeto con las propiedades
@@ -534,3 +534,50 @@ const obtenerInfoPagosConReturn = () =>{
     };
   });
 }
+
+
+/***************** EJERCICIO 22 *****************/
+
+// 22. `obtenerEstadisticasSeniority` que devuelva un objeto donde cada propiedad es un seniority y el valor la cantidad de empleades con dicho seniority
+
+// ver en clase 63 el ejercicio artistasSolistas
+
+const obtenerEstadisticasSeniority = () => {
+  return empleades.reduce((acc, empleade) => {
+    if (acc[empleade.seniority]) {
+      acc[empleade.seniority] ++
+    } else {
+      acc[empleade.seniority] = 1
+    }
+
+    return acc
+  }, {})
+}
+
+/***************** EJERCICIO 23 *****************/
+
+//23. `obtenerEstadisticasLenguajes` que devuelva un objeto donde cada propiedad es un lenguaje y el valor la cantidad de empleades que saben dicho lenguaje
+
+const obtenerEstadisticasLenguajes = () => {
+  // primero voy a usar un reduce para obtener un array con todos los lenguajes de todos los empleades, guardandolo la variable lenguajes
+  const lenguajes = empleades.reduce((acc, empleade) => {
+    empleade.lenguajes.forEach((lenguaje) =>{
+      acc.push(lenguaje)
+    })
+
+  return acc
+  }, [])
+
+  // y retorno el mismo reduce que usamos en el ejercicio 22 recorriendo el nuevo array de lenguajes
+  return lenguajes.reduce((acc, lenguaje) => {
+    if(acc[lenguaje]) {
+      acc[lenguaje] ++
+    } else {
+      acc[lenguaje] = 1
+    }
+
+    return acc
+  }, {})
+}
+
+console.log(obtenerEstadisticasLenguajes());
