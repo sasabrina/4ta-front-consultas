@@ -540,7 +540,7 @@ const obtenerInfoPagosConReturn = () =>{
 
 // 22. `obtenerEstadisticasSeniority` que devuelva un objeto donde cada propiedad es un seniority y el valor la cantidad de empleades con dicho seniority
 
-// ver en clase 63 el ejercicio artistasSolistas
+// ver en clase 63 el ejercicio cantidadDeArtistasPorGenero
 
 const obtenerEstadisticasSeniority = () => {
   return empleades.reduce((acc, empleade) => {
@@ -580,4 +580,4 @@ const obtenerEstadisticasLenguajes = () => {
   }, {})
 }
 
-console.log(obtenerEstadisticasLenguajes());
+// console.log(obtenerEstadisticasLenguajes());

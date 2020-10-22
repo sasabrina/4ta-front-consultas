@@ -55,4 +55,4 @@ const mejoresEstudiantesPorCasa = (casa, arrayDeEstudiantes) => {
     return estudiantesConPromedioMayorA(6, porCasa)
 }
 
-console.table(mejoresEstudiantesPorCasa('Hufflepuff', estudiantes))
+// console.table(mejoresEstudiantesPorCasa('Hufflepuff', estudiantes))

@@ -72,19 +72,61 @@
 }
 */
 
+/***************** EJERCICIO 1 *****************/
+
 // 1-  `artistasSolistas`, que tome por parámetro un array de artistas y devuelva un array con les artistas que sean solistas
 
-const artistasSolistasConVariables = (artistas) => {
-    const solistas = artistas.filter(artista => artista.solista === true)
+const artistasSolistasConVariables = (arrayArtistas) => {
+    const solistas = arrayArtistas.filter(artista => artista.solista === true)
     return solistas
 }
-const artistasSolistasConReturn = (artistas) => {
-    return artistas.filter(artista => artista.solista)
+const artistasSolistasConReturn = (arrayArtistas) => {
+    return arrayArtistas.filter(artista => artista.solista)
  }
  
-const artistasSolistasConReturnImplicito = (artistas) => artistas.filter(artista => artista.solista)
+const artistasSolistasConReturnImplicito = (arrayArtistas) => arrayArtistas.filter(artista => artista.solista)
+
+// console.table(artistasSolistasConVariables(artistas));
+// console.table(artistasSolistasConReturn(artistas));
+// console.table(artistasSolistasConReturn(artistas));
+
+
+/***************** EJERCICIO 2 *****************/
+
+// 2. `artistasPorEdad`, que tome un parámetro "edad" y un array de artistas y devuelva un array con les artistas que tengan dicha edad
+
+const artistasPorEdad = (edad, arrayArtistas) => {
+    return arrayArtistas.filter(artista => artista.edad === edad)
+}
+
+// console.table(artistasPorEdad(25, artistas))
+
+
+/***************** EJERCICIO 3 *****************/
+
+// 3. `cantidadDeArtistasPorInstrumento`, que tome por parámetro un array de artistas y devuelva un objeto donde cada "instrumento" es una propiedad y su valor la cantidad de artistas que tocan dicho instrumento
+
+const cantidadDeArtistasPorInstrumento = (arrayArtistas) => {
+    return arrayArtistas.reduce((acc, artista) => {
+
+        if(acc[artista.instrumento]){
+            acc[artista.instrumento]++;
+        }else{
+            acc[artista.instrumento]=1;
+        }
+
+        return acc;
+    }, {})
+}
+
+// console.table(cantidadDeArtistasPorInstrumento(artistas))
+
+
+/***************** EJERCICIO 4 *****************/
 
 // 4 - cantidadDeArtistasPorGenero, que tome por parámetro un array de artistas y devuelva un objeto donde cada "género" es una propiedad y su valor la cantidad de artistas de dicho género
+
+// visto en clase 63
 
 /*
 1- preguntar si existe ese genero
@@ -147,3 +189,93 @@ const cantidadDeArtistasPorGenero = (artistas) =>{
         return acc+artista
     }, 30)
 */
+
+
+/***************** EJERCICIO 5 *****************/
+
+// 5. `artistasConMasDiscosQue`, que tome por parámetro "cantidadDeDiscos" y un array de artistas y devuelva un array con les artistas que tiene más de esa cantidad de discos, ordenados de mayor a menor según cantidad de discos
+
+const artistasConMasDiscosQue = (cantidadDeDiscos, arrayArtistas) => {
+    const conMasDiscos = arrayArtistas.filter((artista) => artista.discos.length > cantidadDeDiscos)
+
+    return conMasDiscos.sort((a, b) => b.discos.length - a.discos.length)
+}
+
+// console.table(artistasConMasDiscosQue(8, artistas))
+
+
+/***************** EJERCICIO 6 *****************/
+
+// 6. `artistaConMasEntradasVendidas`, que tome por parámetro un array de artistas y devuelva el objeto artista que vendió más entradas en su último recital
+
+const artistaConMasEntradasVendidas = (arrayArtistas) => {
+    return arrayArtistas.reduce((acc, artista) => {
+        if (acc.ultimoRecital.entradasVendidas > artista.ultimoRecital.entradasVendidas) {
+            return acc
+        } else {
+            return artista
+        }
+    })
+}
+
+// console.log(artistaConMasEntradasVendidas(artistas));
+
+
+/***************** EJERCICIO 7 *****************/
+
+// 7. `artistaConMayorRecaudacion`, que tome por parámetro un array de artistas y devuelva el objeto artista que más recaudó en su último recital (entradasVendidas * costoEntradas)
+
+const artistaConMayorRecaudacion = (arrayArtistas) => {
+    // hago una función auxiliar para calcular la recaudación que luego la voy a usar en el reduce
+    const calcularRecaudacion = (objetoArtista) => {
+        return objetoArtista.ultimoRecital.entradasVendidas * objetoArtista.ultimoRecital.costoEntradas
+    }
+
+    return arrayArtistas.reduce((acc, artista) => {
+        if (calcularRecaudacion(acc) > calcularRecaudacion(artista)) {
+            return acc
+        } else {
+            return artista
+        }
+    })
+}
+
+// console.log(artistaConMayorRecaudacion(artistas));
+
+
+/***************** EJERCICIO 8 *****************/
+
+// 8. `artistasConDiscoEnAnio`, que tome por parámetro un parámetro "anio" y un array de artistas, y devuelva un array con los artistas que tengan publicado al menos un disco en dicho año
+
+const artistasConDiscoEnAnio = (anio, arrayArtistas) => {
+    return arrayArtistas.filter((artista) => {
+        return artista.discos.filter((disco) => disco.anioLanzamiento === anio).length != 0
+    })
+}
+// console.table(artistasConDiscoEnAnio(2003, artistas))
+
+
+/***************** EJERCICIO 9 *****************/
+
+
+// 9. `artistaConMasCopias`, que devuelva el objeto artista que más copias de discos en total vendió
+
+const artistaConMasCopias = (arrayArtistas) => {
+    // hago una función auxiliar para el total de copias vendidas que luego la voy a usar en el reduce
+    const totalDiscosVendidos = (objetoArtista) => {
+        return objetoArtista.discos.reduce((acc, disco) => {
+            acc += disco.copiasVendidas
+            return acc
+        }, 0)
+    }
+
+    return arrayArtistas.reduce((acc, artista) => {
+        if (totalDiscosVendidos(acc) > totalDiscosVendidos(artista)) {
+            return acc
+        } else {
+            return artista
+        }
+    })
+}
+
+// console.log(artistaConMasCopias(artistas));
