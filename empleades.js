@@ -348,6 +348,143 @@ const empleadesQueSabenLenguajes = (lenguajesRequeridos) => {
 // console.table(empleadesQueSabenLenguajes(['JavaScript', 'C#', 'Python', 'Java', 'Ruby', 'PHP']))
 
 
+/***************** EJERCICIO 15 *****************/
+
+// 15. `empleadesQueSabenAlgunosLenguajes`, que tome por parámetro un array de lenguajes y devuelva un array con aquelles empleades que sepan al menos uno de esos lenguajes
+
+const empleadesQueSabenAlgunosLenguajes = (lenguajesRequeridos) => {
+  const sabenLenguajes = empleades.filter((empleade) => {
+    return lenguajesRequeridos.some((lenguaje) => {
+      return empleade.lenguajes.includes(lenguaje)
+    })
+  })
+  return sabenLenguajes
+}
+
+// console.table(empleadesQueSabenAlgunosLenguajes(['JavaScript', 'C#', 'Python', 'Java', 'Ruby', 'PHP']))
+
+
+/***************** EJERCICIO 16 *****************/
+
+// 16. `empleadesConMejorSueldo`, que devuelva un array con los 10 mejores empleades pagos (investigar metodo sort)
+
+const empleadesConMejorSueldo = () => {
+  const conMejorSueldo = empleades.sort((a, b) => b.sueldo - a.sueldo)
+
+  return conMejorSueldo.slice(0, 10)
+}
+
+// console.table(empleadesConMejorSueldo())
+
+
+/***************** EJERCICIO 17 *****************/
+
+// 17. `obtenerTitulosCompletos`, que devuelva un array donde cada elemento es un string con la forma "nombre, puesto seniority, area", p.ej.: "Nadia Conrad, Senior Backend Developer, Desarrollo", habiendo un elemento por cada empleade (usar map)
+
+const obtenerTitulosCompletos = () =>{
+  const titulosCompletos = empleades.map((empleade) => {
+    // return empleade.nombre + ", " + empleade.puesto + ", " + empleade.area + "."
+
+    // con string template (comillas invertidas ``)
+    return `${empleade.nombre}, ${empleade.puesto}, ${empleade.area}.`
+  })
+
+  return titulosCompletos
+}
+
+// console.log(obtenerTitulosCompletos())
+
+
+/***************** EJERCICIO 18 *****************/
+
+// 18. `obtenerInfoPersonal`, que devuelva un array donde cada elemento es un objeto con las propiedades
+// - nombre
+// - pais
+// - edad
+// habiendo un elemento por cada empleade, y donde cada propiedad se corresponde a la propiedad del objeto original (usar map)
+
+const obtenerInfoPersonal = () => {
+  // alternativa 1
+  /*const infoPersonal = empleades.map((empleade) => {
+    const nombre = empleade.nombre;
+    const pais = empleade.pais;
+    const edad = empleade.edad
+
+    return {
+      nombre,
+      pais,
+      edad
+    }
+  }) */
+
+  // alternativa 2
+  const infoPersonal = empleades.map((empleade) => {
+    return {
+      nombre: empleade.nombre,
+      pais: empleade.pais,
+      edad: empleade.edad
+    }
+  })
+  return infoPersonal
+}
+
+// console.table(obtenerInfoPersonal());
+
+
+/***************** EJERCICIO 19 *****************/
+/*
+19. `obtenerInfoPuestos`, que devuelva un array donde cada elemento es un objeto con las propiedades
+    - nombre
+    - area
+    - puesto
+    - seniority
+    habiendo un elemento por cada empleade, y donde cada propiedad se corresponde a la propiedad del objeto original (usar map)
+*/
+
+const obtenerInfoPuestos = () => {
+  const infoPuestos = empleades.map((empleade) => {
+    return {
+      nombre: empleade.nombre,
+      area: empleade.area,
+      puesto: empleade.puesto,
+      seniority: empleade.seniority
+    }
+  })
+
+  return infoPuestos
+}
+
+// console.table(obtenerInfoPuestos())
+
+/***************** EJERCICIO 20 *****************/
+
+/*
+20. `obtenerInfoSeniority`, que devuelva un array donde cada elemento es un objeto con las propiedades
+    - nombre
+    - seniority
+    - sueldo
+    - cantidadLenguajes
+    habiendo un elemento por cada empleade, y donde cada propiedad se corresponde a la propiedad del objeto original, eecepto cantidadLenguajes, que es un número indicando la cantidad de lenguajes que sabe (usar map)
+*/
+
+const obtenerInfoSeniority = () => {
+  const infoSeniority = empleades.map((empleade) => {
+    return {
+      nombre: empleade.nombre,
+      seniority: empleade.seniority,
+      sueldo: empleade.sueldo,
+      cantidadLenguajes: empleade.lenguajes.length
+    }
+  })
+
+  return infoSeniority
+}
+
+// console.table(obtenerInfoSeniority())
+
+
+/***************** EJERCICIO 20 *****************/
+
 
 // 21 -`obtenerInfoPagos`, que devuelva una array donde cada elemento es un objeto con las propiedades
     // - nombre
