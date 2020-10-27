@@ -9,7 +9,7 @@ Navegamos hasta la carpeta que prefieras para realizar los ejercicios, por ejemp
 ### Ejercicio 1 - Base - Creando, listando y Navegando branch
 
 **Contexto:**
-Nos toca crear una de lista de películas separadas por categorías usando git como sistema de versionado.Y una rama para los estrenos.
+Nos toca crear una de lista de películas separadas por categorías usando git como sistema de versionado. Y una rama para los estrenos.
 
 **Pasos:**
 
@@ -17,14 +17,16 @@ Nos toca crear una de lista de películas separadas por categorías usando git c
 2. Agregamos a cada archivo txt un 3 películas.
 3. Abrimos la consola y nos ubicamos sobre la carpeta dé `"peliculas"`
 4. Iniciamos un repositorio y realizamos un commit
-5. Creamos una nueva rama llamada `"estrenos"`
+5. Cambiamos el nombre de la rama principal (master a main)
+   > git branch -M main
+6. Creamos una nueva rama llamada `"estrenos"`
    > git branch estrenos
-6. Listamos las ramas creadas
+7. Listamos las ramas creadas
    > git branch
-7. Nos cambiamos a la rama `"estrenos"`
+8. Nos cambiamos a la rama `"estrenos"`
    > git checkout estrenos
-8. Volvemos a la rama `"master"`
-   > git checkout master
+9. Volvemos a la rama `"main"`
+   > git checkout main
 
 ### Ejercicio 2 - Unión de las ramas
 
@@ -36,11 +38,11 @@ Nos toca trabajar agregando películas de acción para esto nos piden que creemo
 1. Basándonos en el ejercicio 1, creamos una nueva rama llamada `"accion"` y nos cambiamos a esta.
 2. Agregamos un archivo llamado `"accion.txt"` dentro colocamos 3 nombres de películas de acción
 3. Hacemos un commit con el mensaje "Se agregó la lista de películas de acción"
-4. Vamos a fusionar la rama `"master"` con `"accion"`
-   a. Cambiamos a la rama `"master"`
-   b. Hacemos un merge a la rama acción con un mensaje que diga "Se fusionó master con accion"
-   > git merge accion -m "Se fusiono master con accion"
-5. Revisamos que en la rama `"master"` hay un archivo llamado `"accion.txt"`
+4. Vamos a fusionar la rama `"main"` con `"accion"`
+   a. Cambiamos a la rama `"main"`
+   b. Hacemos un merge a la rama acción con un mensaje que diga "Se fusionó main con accion"
+   > git merge accion -m "Se fusiono main con accion"
+5. Revisamos que en la rama `"main"` hay un archivo llamado `"accion.txt"`
 
 ### Ejercicio 3 - Resolviendo conflictos
 
@@ -52,10 +54,10 @@ Nos toca trabajar agregando películas de románticas para esto nos piden que cr
 2. Agregamos un archivo llamado `"romanticas.txt"` dentro colocamos 3 nombres de películas de románticas
 3. Modificamos el archivo `"comedia.txt"` y agregamos 2 películas más.
 4. Hacemos un commit con el mensaje "Se agregó la lista de películas de románticas y se modificó lista de películas de comedia"
-5. Nos cambiamos a la rama master
+5. Nos cambiamos a la rama main
 6. Modificamos el archivo `"comedia.txt"` y agregamos 4 películas más.
 7. Hacemos un commit con el mensaje "Se modificó las lista de películas de comedia"
-8. Vamos a fusionar la rama `"master"` con `"romanticas"` con el mensaje "Se fusionó master con románticas"
+8. Vamos a fusionar la rama `"main"` con `"romanticas"` con el mensaje "Se fusionó main con románticas"
 9. Resolvemos el conflicto
 10. Hacemos un commit
 
@@ -81,7 +83,7 @@ Se nos pide crear la rama `"sitcom"` para trabajar.Cuando terminamos nos adviert
 2. Agregamos un archivo llamado `"sitcom.txt"` dentro colocamos 3 nombres de series de acción (Ej: Friends, Atypical, Modern Family, etc)
 3. Hacemos un commit con el mensaje "Se agregó la lista de series sitcom"
 4. Borramos la rama `"sitcom"`
-   a. Nos cambiamos a la rama master
+   a. Nos cambiamos a la rama main
    b. Eliminamos de forma forzada la rama `"sitcom"`
    > git branch -D sitcom
 5. Listamos las ramas para ver que `"sitcom"` no se encuentra en la lista
@@ -108,15 +110,15 @@ En caso de que entre en conflicto, se nos pide que procedamos a borrar la catego
 1. Basándonos en el ejercicio 1, creamos una nueva ramas llamada `"terror"` y nos cambiamos a esta
 2. Borramos todos los archivos menos a `"terror.txt"`. Agregamos la película.
 3. Hacemos un commit con el mensaje "Se modificó terror.txt y se borró el resto"
-4. Nos movemos a la rama de master
+4. Nos movemos a la rama de main
 5. Agregamos el archivo `"indice.txt"` y dentro listamos las categorías.Además de agregar 1 película más a cada categoría.
 6. Hacemos un commit con el mensaje "Se agregó el índice de categorías y modifico todas la categoría"
-7. Fusionamos master con la rama terror
+7. Fusionamos main con la rama terror
 8. Hacemos un "`git status`" para ver el conflicto
 9. Agregamos todos los archivos que correspondan y eliminamos a `"comedia.txt"`
    > git add -A
    > git rm comedia.txt
-10. Hacemos un commit con el mensaje "Se fusionó correctamente master con terror"
+10. Hacemos un commit con el mensaje "Se fusionó correctamente main con terror"
 
 ### Ejercicio 8 - Integral
 
@@ -131,13 +133,13 @@ Nos piden realizar una página web con lista de películas.
 - **Primera entrega**
   Nos piden que creemos un archivo base html con un listado de 5 películas e Iniciemos un repositorio.
 - **Segunda entrega**
-  Nos piden que trabajemos en una rama llama `"dev"` por que la rama `"master"` está en producción y lo ven clientes.
+  Nos piden que trabajemos en una rama llama `"dev"` por que la rama `"main"` está en producción y lo ven clientes.
   En adelante cada trabajo que realizaremos trabajaremos sobre la rama dev,a menos que se nos aclare .
   Por último nos piden separar las películas por categoría y agregarlo a producción.
 - **Tercera entrega**
   Nos piden que agreguemos un archivo de lista de series y otro de estrenos.
 - **Cuarta entrega**
-  Nos avisan que hay un error en producción que las películas en el archivo base y estrenos deben estar ordenadas de forma alfabética, para solucionar esto nos piden movamos a producción y creemos una rama llamada hotfix. Arreglemos el problema y lo fusionemos con master.
+  Nos avisan que hay un error en producción que las películas en el archivo base y estrenos deben estar ordenadas de forma alfabética, para solucionar esto nos piden movamos a producción y creemos una rama llamada hotfix. Arreglemos el problema y lo fusionemos con main.
 - **Quinta entrega**
   Nos piden que agreguemos 3 películas más y que por la poca demanda que borremos el archivo de estrenos.Una vez terminado agregarlo a producción
 - **Sexta entrega**
@@ -145,4 +147,4 @@ Nos piden realizar una página web con lista de películas.
 - **Séptima entrega**
   A Artemisa se le pide agregar 5 series de comedia, pero como esta ocupado con algo más de urgencia, te piden que lo realices en la rama de ella.Además te solicitan que agregues 5 series de animación en tu rama.
 
-Por último cuando este completo te piden que lo agregues a master.
+Por último cuando este completo te piden que lo agregues a main.
